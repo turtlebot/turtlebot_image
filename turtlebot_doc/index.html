@@ -1,0 +1,192 @@
+<html>
+<head>
+  <title>Getting Started</title>
+  <style type="text/css">
+    <!--
+    body {
+      margin:0;
+      padding:0;
+      border:0;
+      outline:0;
+      position: 0,0;
+      background-image: url(imgs/turtle-doc-header.png);
+      background-repeat: no-repeat;
+      font-family: "Ubuntu", sans-serif;
+      font-size: 16pt;
+    }
+    h1 {
+      font-family: "Ubuntu", sans-serif;
+      font-weight: bold;
+      font-size: 36pt;
+      text-align: center;
+    }
+    div {
+      margin:0;
+      margin-left:100px;
+      margin-right:200px;
+      padding:20px;
+      border:0;
+      outline:0;
+    }
+    p {
+      font-family: "LiberationSans", sans-serif;
+    }
+    -->
+  </style>
+</head>
+<body>
+ <!-- Header-->
+  <div class="header"> 
+    <h1>TurtleBot Startup Guide</h1>
+  </div>
+  <br>
+
+  <div>
+      <strong>ID : </strong> turtlebot<br/>
+      <strong>PW : </strong> turtlebot<br/>
+  </div>
+  <div>
+    <h2>Hello fellow roboticist,</h2>
+    <p>
+        Welcome to the TurtleBot Quick Start Guide.<br>
+    <blockquote>
+      <p> 
+        The TurtleBot is a low-cost, personal robot kit with open-source software. It can drive around your house, see in 3D, and has enough horsepower to help you build exciting applications. This guide provides a few tips and tricks for working with the TurtleBot and links to several online resource.
+        </h1>
+      </p>
+    </blockquote>
+    Thanks,<br/>
+    TurtleBot Development Team
+    </p>
+  </div>
+
+  <!-- Quick Start -->
+  <div>
+    <h2>Quick Start</h2>
+      <h3>Step 1: Setup network</h3>
+        <p><div><center><img src="imgs/wificonf.png" width="182" height="247"/></center></div>
+        <br/>
+        <p>The primary requirement for getting your TurtleBot running is that is needs to be connected to a network so that you can operate it remotely. You can use the Network Manager in the upper right corner of your screen to connect to a WiFi, Ethernet or cellular network. 
+           After the network is started, <a href="http://wiki.ros.org/turtlebot_bringup/Tutorials/indigo/TurtleBot%20Bringup">ROS can be started from a terminal</a> and then the laptop can be closed and placed in the TurtleBot.</p>
+        <p>Additionally, <i>ROS_HOSTNAME</i> and <i>ROS_MASTER_URI</i> environment variables in robot should be set to work with remote workstation. IP_OF_TURTLEBOT should be replaced of real ip address</p>
+
+        <code>
+          > echo export ROS_MASTER_URI=http://IP_OF_TURTLEBOT:11311 >> ~/.bashrc <br/>
+          > echo export ROS_HOSTNAME=IP_OF_TURTLEBOT >> ~/.bashrc
+        </code>
+
+      <h3>Step 2: Bring up TurtleBot Software</h3>
+        <p>Once the network is setup the robot can operate. TurtleBot also offers the option of managing your programs as robot apps via the app manager
+        </p>
+        <code>
+          > roslaunch turtlebot_bringup minimal.launch
+        </code>
+        <p>
+        
+      <h3>Step 3: Run Teleop</h3>
+        <p> Following command allows to teleop your TurtleBot with keyboard. Assuming that the TurtleBot has started with <i>Minimal</i> or <i>AppManager</i> instructions</p>
+        <code>
+          > roslaunch turtlebot_teleop keyboard_teleop.launch
+        </code>
+        <p><a href="imgs/teleop.png"><img src="imgs/teleop.png" width="500" height="300"/></a>
+        <br/>
+        <p> For remote teleoperation, please refer to <a href="http://wiki.ros.org/turtlebot/Tutorials/indigo/Workstation%20Installation">Workstation Installtion</a> tutorials</p>
+
+      <h3>Step 4: Run More Demos!</h3>
+        <p>The robot can run several demos include <a href="http://wiki.ros.org/turtlebot_navigation/Tutorials">Navigation</a> and <a href="http://www.ros.org/wiki/turtlebot_follower/Tutorials/Demo">People Following</a>. We suggest starting with these demos to gather experimental data on the robot's performance.</p>
+
+      <h3>Step 5: Bringup the 3D Sensor</h3>
+        <p>The 3D Sensor provided with the TurtleBot does not start with the minimal bringup commands to save power and netbook performance. It is ususally started by apps that are launched with custom configuration. You can start the 3D Sensor manually with following command. Note that some 3D Sensors may not work with usb 3.0 port. Please make sure to use usb 2.0 for those devices</p>
+        <code>
+          > roslaunch turtlebot_bringup 3dsensor.launch
+        </code>
+  </div>
+
+  <!-- Software Notes -->
+  <div>
+    <h2>Software Notes</h2>
+      <!-- Android -->
+<!--
+      <h3> Robot Remocon - Android Pairing </h3>
+        
+      <img src="imgs/remocon_logo.png" width="200" height="300"/>
+      <img src="imgs/remocon_screenshot.png" width="200" height="300"/>
+
+      <p>
+        The robot remocon is an android application to interface with ROS robots in pairing mode. When the remocon starts, you can initiate connections with ROS robots using one the following mechanisms:
+        <ul>
+          <li>Manually</li>
+          <li>QRCode</li>
+          <li>Zeroconf</li>
+          <li>Previously saved connection</li>
+        </ul>
+        </p>
+        <p>
+        Once connected, the remocon displays a list of the app pairs (robot and android) that you can start/stop remotely. The TurtleBot provides the following default apps.
+      </p>
+      <ul>
+        <li><a href="https://play.google.com/store/apps/details?id=com.github.rosjava.android_apps.teleop">Android Teleop</a></li>
+        <li><a href="https://play.google.com/store/apps/details?id=com.github.rosjava.android_apps.make_a_map">Make a Map</a></li>
+        <li><a href="https://play.google.com/store/apps/details?id=com.github.rosjava.android_apps.map_nav">Map Nav</a></li>
+        <li><a href="https://play.google.com/store/apps/details?id=com.github.turtlebot.turtlebot_android.follower">TurtleBot Follower</a></li>
+      </ul>
+-->    
+      <!-- Turtlebot Dashboard -->
+      <h3>TurtleBot Dashboard</h3>
+      <p>The <a href="http://www.ros.org/wiki/turtlebot_dashboard">TurtleBot Dashboard</a> provides a wide range of diagnostic information, including the current battery levels for the robot base and the laptop and the state of the power breakers. This GUI can be run locally on the robot or on a workstation that has been configured to use the TurtleBot as the ROS Master.</p>
+      <img src="imgs/turtlebot_dashboard.png" width="600" height="400"/>
+
+      <h3>Rviz</h3>
+      <p><a href="http://wiki.ros.org/rviz">Rviz</a> is a 3D visualzation tool for ROS which allows to introspect the internal data stream in ros. <a href="http://wiki.ros.org/turtlebot_rviz_launchers">turtlebot_rviz_launchers</a> provides preconfigured launchers to visualize and introspect status of TurtleBot easily.</p> 
+      <p>
+      <ul>
+        <li>View Robot      : roslaunch turtlebot_rviz_lauchers view_robot.launch </li>
+        <li>View Navigation : roslaunch turtlebot_rviz_lauchers view_navigation.launch </li>
+        <li>View Model      : roslaunch turtlebot_rviz_lauchers view_model.launch </li>
+      </ul>
+      </p>
+      <img src="imgs/rviz_capture.png" width="600" height="400"/>
+  </div>
+
+  <!-- Hardware Notes -->
+  <div>
+    <h2> Hardware Notes </h2>
+      <h4> Yujin Robot Kobuki</h4>
+        <p>The Kobuki has been designed with continous operation in mind, so the robot is fully operation while charging. Indeed, it can recharge the on-board laptop together with the robot, as long as the power cable is connected between the Kobuki and the laptopwhile the kobuki is charging. </p>
+        <ul>
+          <li><a href="http://kobuki.yujinrobot.com">Kobuki Website</a></li>
+          <li><a href="http://kobuki.yujinrobot.com/home-en/documentation">Kobuki Documentation</a></li>
+          <li><a href="http://wiki.ros.org/kobuki">Kobuki ROS Wiki</a></li>
+        </ul>
+
+      <h4>iRobot Create</h4>
+        <p> <strong>Charging</strong> : When Turtlebots are charging, their power indicator lights fades on and off, it the light is not fading in and out your robot is not charging. If you have trouble charging the robot, we suggest disconnecting power to the Create, removing the serial connection and turning the Create off before reconnecting the charger. As the indicator light may turn off when the Create is on, we suggest turning the Create back on before turning it off to make sure the Create is actually off.<p>
+        <p> <strong>Kinect Power</strong> : The iRobot Create is limited to providing 1.5 Amps at 12 Volts via the power connector. Due to this limitation, the Kinect power output must be disabled for the robot to charge. Otherwise, devices such as a Kinect can discharge the battery faster than it can able to charge which may damage the battery. To prevent this, the power output is disabled in software by default and must be enabled to operate the Kinect. 
+        <p> <strong>Calibration</strong> : iRobot Create based TurtleBots equipped with a gyro can use the <a href="http://www.ros.org/wiki/turtlebot_calibration">turtlebot_calibration</a> package to achieve the best odometry. If your robot has a gyro that is has a maximum yaw rate that is not 250&deg;/sec, you will need to set the gyro_measurement_range parameter in the launch file before attempting calibration. See this <a href="https://kforge.ros.org/turtlebot/trac/ticket/111">ticket</a> or this <a href="http://answers.ros.org/question/12446/turtlebot-slam-map-building-problems/">question</a> on ROS Answers for more information.</p>
+
+        <ul>
+          <li><a href="http://www.irobot.com/us/learn/Educators/Create.aspx">Create Website</a></li>
+          <li><a href="http://wiki.ros.org/turtlebot_create">Create ROS Wiki</a></li>
+        </ul>
+
+  </div>
+
+  <div>
+    <h2>Online Resources</h2>
+      <p>Here are a selection of useful resources for working with the TurtleBot</p>
+      <p>
+        <ul>
+          <li><a href="http://www.turtlebot.com">turtlebot.com</a></li>
+          <li><a href="http://www.ros.org/wiki/Robots/TurtleBot">TurtleBot Wiki</a>
+          <li><a href="http://turtlebot.com/build.html">TurtleBot Hardware Docs</a>
+          <li><a href="https://github.com/turtlebot/turtlebot/issues">TurtleBot Bug Tracker</a>
+          <li><a href="http://www.thingiverse.com/tag:TurtleBot">3D Printable TurtleBot Accessories</a>
+          <li><a href="http://www.ros.org/wiki/ROS/Tutorials">ROS Tutorials</A>
+          <li><a href="http://answers.ros.org">ROS Answers - Q&A support system</a>
+          <li><a href="https://code.ros.org/mailman/listinfo/ros-users">ros-users mailing list</a>
+          <li><a href="https://groups.google.com/forum/?fromgroups#!forum/ros-sig-turtlebot">turtlebot-users mailing list</a>
+        </ul>
+      </p>
+  </div>
+</body>
+</html>
