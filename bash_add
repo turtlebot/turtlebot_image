@@ -4,3 +4,6 @@ source /opt/ros/indigo/setup.bash
 # Environment variables to work with remote workstation
 #export ROS_HOSTNAME=localhost
 #export ROS_MASTER_URI=http://localhost:11311
+
+# Customise turtlebot
+#export TURTLEBOT_NAME=turtlebot
